@@ -30,7 +30,11 @@ export class LoginComponent implements OnInit {
     } else return 'invalid';
   };
 
-  onSubmit = () => {
-    console.log(this.loginForm.value);
+  onSubmit = async() => {
+    if(this.loginForm.invalid){
+      return;
+    }
+    // console.log(this.loginForm.value);
+    const data = this.loginForm.value;
   };
 }
