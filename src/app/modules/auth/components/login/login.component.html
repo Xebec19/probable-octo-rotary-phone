@@ -10,7 +10,7 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Password</mat-label>
-        <input matInput formControlName="password" />
+        <input matInput type="password" formControlName="password" />
         <mat-error *ngIf="loginForm.controls['password']?.invalid">{{
           this.getErrors("password")
         }}</mat-error>

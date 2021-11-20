@@ -1,0 +1,14 @@
+[
+    {
+        "label":"Dashboard",
+        "route":"/auth/dashboard"
+    },
+    {
+        "label":"Dashboard",
+        "route":"/auth/dashboard"
+    },
+    {
+        "label":"Dashboard",
+        "route":"/auth/dashboard"
+    }
+]

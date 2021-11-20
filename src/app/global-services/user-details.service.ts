@@ -7,14 +7,20 @@ import { localStorageService } from './local-storage.service';
 })
 export class UserDetailsService {
   userToken = new BehaviorSubject('');
-
+  isLoggedIn = new BehaviorSubject(false);
   constructor(private ls: localStorageService) {}
   set setToken(token: string) {
     this.userToken.next(token);
   }
+  get token(){
+    return this.ls.getToken;
+  }
   fetchToken = () => {
     if (!!!this.userToken.getValue()) {
-      this.userToken.next(this.ls.getToken);
+      this.setToken = this.ls.getToken ?? '';
+    }
+    if (!!this.userToken.getValue() && !this.isLoggedIn.getValue()) {
+      this.isLoggedIn.next(true);
     }
     return this.userToken.getValue();
   };

@@ -1,3 +1,5 @@
-export interface IApiResponse{
-    data:any;
-}
+export interface IApiResponse {
+    message: string;
+    status: boolean;
+    data: any;
+  }

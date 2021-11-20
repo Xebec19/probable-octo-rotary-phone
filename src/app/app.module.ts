@@ -6,11 +6,18 @@ import { AppComponent } from './app.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { NotificationService } from './global-services/notification.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderInterceptor } from './global-services/httpInterceptor.service';
+import { MaterialModule } from './modules/material/material.module';
 @NgModule({
   declarations: [AppComponent, ErrorPageComponent],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MaterialModule
+  ],
   providers: [
     NotificationService,
     {
