@@ -1,5 +1,6 @@
 .product-update__container {
   overflow-x: hidden;
+  overflow-y: scroll;
   padding: 5px;
   text-align: center;
 }
@@ -21,6 +22,9 @@ form {
   display: none;
 }
 .uploadedImage {
-  width: 2rem;
-  height: 2rem;
+  width: 4rem;
+  height: 3rem;
+}
+.submit-button{
+  margin-top: 1rem;
 }

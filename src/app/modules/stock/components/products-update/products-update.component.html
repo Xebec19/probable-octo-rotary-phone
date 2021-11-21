@@ -1,5 +1,12 @@
 <section class="product-update__container">
   <form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm)">
+    <div>
+      <img
+        [src]="this.productForm.controls['productImage'].value"
+        class="uploadedImage"
+        [alt]="this.productForm.controls['productName'].value"
+      />
+    </div>
     <mat-form-field class="row">
       <mat-label class="col-12">Product name</mat-label>
       <input matInput formControlName="productName" />
@@ -8,8 +15,6 @@
       </mat-error>
     </mat-form-field>
     <div class="fileUpload">
-      <!-- <img [src]="downloadURL" *ngIf="!!downloadURL" class="uploadedImage" alt="uploaded image" /> -->
-      <img src="https://firebasestorage.googleapis.com/v0/b/bazaa-9913b.appspot.com/o/%222021-11-21T14%3A01%3A34.104Z%22gabor-szuts-uu8sDKvTx-g-unsplash.jpg?alt=media&token=2ce67caf-85b5-4768-979a-2c91b99206d0" class="uploadedImage" alt="uploaded image" />
       <mat-icon (click)="clickFileUpload()">add</mat-icon>
       <input
         type="file"
@@ -21,32 +26,63 @@
     <mat-form-field class="row">
       <mat-label class="col-12">Quantity</mat-label>
       <input matInput formControlName="quantity" />
+      <mat-error *ngIf="this.productForm.controls['quantity'].errors">
+        {{ this.getError("quantity") }}
+      </mat-error>
     </mat-form-field>
     <mat-form-field class="row">
       <mat-label class="col-12">Status</mat-label>
-      <input matInput formControlName="status" />
+      <mat-select formControlName="status">
+        <mat-option *ngFor="let status of statusOptions" [value]="status">
+          {{ status | titlecase }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="this.productForm.controls['status'].errors">
+        {{ this.getError("status") }}
+      </mat-error>
     </mat-form-field>
     <mat-form-field class="row">
       <mat-label class="col-12">Category</mat-label>
-      <input matInput formControlName="categoryId" />
+      <mat-select formControlName="categoryId">
+        <mat-option
+          *ngFor="let category of categories"
+          [value]="category.category_id"
+        >
+          {{ category.category_name | titlecase }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="this.productForm.controls['categoryId'].errors">
+        {{ this.getError("categoryId") }}
+      </mat-error>
     </mat-form-field>
     <mat-form-field class="row">
       <mat-label class="col-12">Price</mat-label>
       <input matInput formControlName="price" />
+      <mat-error *ngIf="this.productForm.controls['price'].errors">
+        {{ this.getError("price") }}
+      </mat-error>
     </mat-form-field>
     <mat-form-field class="row">
       <mat-label class="col-12">Delivery Price</mat-label>
       <input matInput formControlName="deliveryPrice" />
+      <mat-error *ngIf="this.productForm.controls['deliveryPrice'].errors">
+        {{ this.getError("deliveryPrice") }}
+      </mat-error>
     </mat-form-field>
     <mat-form-field class="row">
       <mat-label class="col-12">Product Description</mat-label>
       <textarea
         matInput
-        formControlName="productName"
-        rows="10"
+        formControlName="productDesc"
+        rows="8"
         cols="50"
       ></textarea>
+      <mat-error *ngIf="this.productForm.controls['productDesc'].errors">
+        {{ this.getError("productDesc") }}
+      </mat-error>
     </mat-form-field>
-    <button mat-raised-button color="primary">submit</button>
+    <button class="submit-button" mat-raised-button color="primary">
+      submit
+    </button>
   </form>
 </section>
