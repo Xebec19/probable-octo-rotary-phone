@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { async } from '@angular/core/testing';
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { async, finalize, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-products-update',
@@ -9,8 +10,13 @@ import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 })
 export class ProductsUpdateComponent implements OnInit {
   productForm!: FormGroup;
-  constructor() {}
-
+  constructor(private storage: AngularFireStorage) {
+    const ref = this.storage.ref('name-your-file-path-here');
+    this.profileUrl = ref.getDownloadURL();
+  }
+  profileUrl!: Observable<string>;
+  uploadPercent!: Observable<number | undefined>;
+  downloadURL!: Observable<string>;
   ngOnInit(): void {
     this.productForm = new FormGroup({
       productName: new FormControl('', [Validators.required]),
@@ -32,7 +38,13 @@ export class ProductsUpdateComponent implements OnInit {
       productDesc: new FormControl('', [Validators.required]),
       countryId: new FormControl(1, [Validators.required]),
     });
+    this.getFileUrl();
   }
+  getFileUrl = async () => {
+    const ref = 'name-your-file-path-here';
+    const fileRef = this.storage.ref(ref);
+    fileRef.getDownloadURL();
+  };
   getError = (control: string) => {
     if (this.productForm.controls[control].errors?.['required']) {
       return 'this field is required';
@@ -45,7 +57,25 @@ export class ProductsUpdateComponent implements OnInit {
   onSubmit = async (form: FormGroup) => {
     console.log(form.value);
   };
-  fileUpload = async (event: any) => {
-    console.log(event.target.files[0]);
+  fileUpload = (event: any) => {
+    const file = event.target.files[0];
+    const d = JSON.stringify(new Date()).replace(/"/g, '');
+    const filePath = d + file.name;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+    this.uploadPercent = task.percentageChanges();
+    task.percentageChanges().subscribe((percentage) => {
+      console.log(percentage);
+    });
+    task
+      .snapshotChanges()
+      .pipe(
+        finalize(() =>
+          fileRef.getDownloadURL().subscribe((url) => {
+            console.log(url);
+          })
+        )
+      )
+      .subscribe();
   };
 }

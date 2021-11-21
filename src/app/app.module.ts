@@ -12,6 +12,8 @@ import { MaterialModule } from './modules/material/material.module';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 @NgModule({
   declarations: [AppComponent, ErrorPageComponent],
   imports: [
@@ -20,6 +22,8 @@ import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideRemoteConfig(() => getRemoteConfig())
   ],

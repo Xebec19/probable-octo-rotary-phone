@@ -7,7 +7,6 @@ import { ProductsUpdateComponent } from './components/products-update/products-u
 import { StockRoutingModule } from './stock-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
-
 @NgModule({
   declarations: [
     CategoriesUpdateComponent,
@@ -20,6 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     StockRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
+    MaterialModule
   ],
+  providers: [],
 })
 export class StockModule {}

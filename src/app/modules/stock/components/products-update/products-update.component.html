@@ -7,7 +7,13 @@
         {{ this.getError("productName") }}
       </mat-error>
     </mat-form-field>
-      <input mat-raised-button type="file" (change)="fileUpload($event)" formControlName="productImage" />
+    <div class="fileUpload">
+      <input type="file" (change)="fileUpload($event)" />
+      <mat-progress-spinner
+        mode="indeterminate"
+        [value]="50"
+      ></mat-progress-spinner>
+    </div>
     <mat-form-field class="row">
       <mat-label class="col-12">Quantity</mat-label>
       <input matInput formControlName="quantity" />
