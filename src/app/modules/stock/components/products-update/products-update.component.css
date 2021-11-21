@@ -11,8 +11,16 @@ form {
 }
 .fileUpload {
   margin-bottom: 15px;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  flex-direction: column;
+  align-self: center;
 }
-mat-progress-spinner{
+.fileInput {
+  display: none;
+}
+.uploadedImage {
   width: 2rem;
   height: 2rem;
 }

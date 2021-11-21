@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { async, finalize, Observable } from 'rxjs';
@@ -10,13 +10,15 @@ import { async, finalize, Observable } from 'rxjs';
 })
 export class ProductsUpdateComponent implements OnInit {
   productForm!: FormGroup;
+  profileUrl!: Observable<string>;
+  uploadPercent!: Observable<number | undefined>;
+  downloadURL!: Observable<string>;
+  @ViewChild('file', { static: true })
+  fileRef!: ElementRef;
   constructor(private storage: AngularFireStorage) {
     const ref = this.storage.ref('name-your-file-path-here');
     this.profileUrl = ref.getDownloadURL();
   }
-  profileUrl!: Observable<string>;
-  uploadPercent!: Observable<number | undefined>;
-  downloadURL!: Observable<string>;
   ngOnInit(): void {
     this.productForm = new FormGroup({
       productName: new FormControl('', [Validators.required]),
@@ -57,6 +59,9 @@ export class ProductsUpdateComponent implements OnInit {
   onSubmit = async (form: FormGroup) => {
     console.log(form.value);
   };
+  clickFileUpload = async () => {
+    this.fileRef.nativeElement.click();
+  };
   fileUpload = (event: any) => {
     const file = event.target.files[0];
     const d = JSON.stringify(new Date()).replace(/"/g, '');
@@ -72,7 +77,7 @@ export class ProductsUpdateComponent implements OnInit {
       .pipe(
         finalize(() =>
           fileRef.getDownloadURL().subscribe((url) => {
-            console.log(url);
+            this.downloadURL = url;
           })
         )
       )

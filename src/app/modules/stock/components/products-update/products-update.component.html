@@ -8,11 +8,15 @@
       </mat-error>
     </mat-form-field>
     <div class="fileUpload">
-      <input type="file" (change)="fileUpload($event)" />
-      <mat-progress-spinner
-        mode="indeterminate"
-        [value]="50"
-      ></mat-progress-spinner>
+      <!-- <img [src]="downloadURL" *ngIf="!!downloadURL" class="uploadedImage" alt="uploaded image" /> -->
+      <img src="https://firebasestorage.googleapis.com/v0/b/bazaa-9913b.appspot.com/o/%222021-11-21T14%3A01%3A34.104Z%22gabor-szuts-uu8sDKvTx-g-unsplash.jpg?alt=media&token=2ce67caf-85b5-4768-979a-2c91b99206d0" class="uploadedImage" alt="uploaded image" />
+      <mat-icon (click)="clickFileUpload()">add</mat-icon>
+      <input
+        type="file"
+        class="fileInput"
+        #file
+        (change)="fileUpload($event)"
+      />
     </div>
     <mat-form-field class="row">
       <mat-label class="col-12">Quantity</mat-label>
