@@ -9,6 +9,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderInterceptor } from './global-services/httpInterceptor.service';
 import { MaterialModule } from './modules/material/material.module';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
 @NgModule({
   declarations: [AppComponent, ErrorPageComponent],
   imports: [
@@ -16,7 +19,9 @@ import { MaterialModule } from './modules/material/material.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideRemoteConfig(() => getRemoteConfig())
   ],
   providers: [
     NotificationService,

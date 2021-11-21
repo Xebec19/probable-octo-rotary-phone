@@ -1,14 +1,22 @@
 [
-    {
-        "label":"Dashboard",
-        "route":"/auth/dashboard"
-    },
-    {
-        "label":"Dashboard",
-        "route":"/auth/dashboard"
-    },
-    {
-        "label":"Dashboard",
-        "route":"/auth/dashboard"
-    }
+  {
+    "label": "Dashboard",
+    "route": "/auth/dashboard"
+  },
+  {
+    "label": "Add Product",
+    "route": "/stock/product-input"
+  },
+  {
+    "label": "Product Table",
+    "route": "/stock/product-table"
+  },
+  {
+    "label": "Categories Update",
+    "route": "/stock/category-update"
+  },
+  {
+    "label": "Category Table",
+    "route": "/stock/category-table"
+  }
 ]

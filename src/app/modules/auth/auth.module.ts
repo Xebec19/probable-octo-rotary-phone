@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { CheckTokenService } from './services/logout-gaurd.service';
 import { AuthRoutingModule } from './auth.routing-module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
@@ -16,6 +15,5 @@ import { MaterialModule } from '../material/material.module';
     MaterialModule,
     AuthRoutingModule,
   ],
-  providers: [CheckTokenService],
 })
 export class AuthModule {}

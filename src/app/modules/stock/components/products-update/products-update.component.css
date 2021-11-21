@@ -1,0 +1,14 @@
+.product-update__container {
+  overflow-x: hidden;
+  padding: 5px;
+  text-align: center;
+}
+form {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.fileUpload {
+  visibility: hidden;
+}

@@ -11,8 +11,9 @@ export class UserDetailsService {
   constructor(private ls: localStorageService) {}
   set setToken(token: string) {
     this.userToken.next(token);
+    this.ls.setToken = token;
   }
-  get token(){
+  get token() {
     return this.ls.getToken;
   }
   fetchToken = () => {

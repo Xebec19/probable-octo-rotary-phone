@@ -1,1 +1,42 @@
-<p>products-update works!</p>
+<section class="product-update__container">
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm)">
+    <mat-form-field class="row">
+      <mat-label class="col-12">Product name</mat-label>
+      <input matInput formControlName="productName" />
+      <mat-error *ngIf="this.productForm.controls['productName'].errors">
+        {{ this.getError("productName") }}
+      </mat-error>
+    </mat-form-field>
+      <input mat-raised-button type="file" (change)="fileUpload($event)" formControlName="productImage" />
+    <mat-form-field class="row">
+      <mat-label class="col-12">Quantity</mat-label>
+      <input matInput formControlName="quantity" />
+    </mat-form-field>
+    <mat-form-field class="row">
+      <mat-label class="col-12">Status</mat-label>
+      <input matInput formControlName="status" />
+    </mat-form-field>
+    <mat-form-field class="row">
+      <mat-label class="col-12">Category</mat-label>
+      <input matInput formControlName="categoryId" />
+    </mat-form-field>
+    <mat-form-field class="row">
+      <mat-label class="col-12">Price</mat-label>
+      <input matInput formControlName="price" />
+    </mat-form-field>
+    <mat-form-field class="row">
+      <mat-label class="col-12">Delivery Price</mat-label>
+      <input matInput formControlName="deliveryPrice" />
+    </mat-form-field>
+    <mat-form-field class="row">
+      <mat-label class="col-12">Product Description</mat-label>
+      <textarea
+        matInput
+        formControlName="productName"
+        rows="10"
+        cols="50"
+      ></textarea>
+    </mat-form-field>
+    <button mat-raised-button color="primary">submit</button>
+  </form>
+</section>

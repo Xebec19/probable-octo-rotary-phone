@@ -29,6 +29,9 @@ export class LoginComponent implements OnInit {
         Validators.minLength(8),
       ]),
     });
+    if (!!this.userDetails.fetchToken) {
+      this.router.navigate(['auth/dashboard']);
+    }
   }
 
   getErrors = (control: string) => {

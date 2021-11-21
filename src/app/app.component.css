@@ -5,10 +5,15 @@
 }
 
 mat-drawer-content {
-  padding: 12px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  padding: 0px;
+}
+mat-drawer-content {
+  overflow-x: hidden;
+  width: 100%;
 }
 .example-spacer {
   flex: 1 1 auto;
@@ -17,7 +22,10 @@ mat-drawer {
   width: 50%;
 }
 @media only screen and (min-width: 600px) {
-    mat-drawer {
-        width: 15%;
-      }   
+  mat-drawer {
+    width: 15%;
   }
+}
+.active {
+  color: dodgerblue;
+}
