@@ -10,6 +10,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 @NgModule({
   imports: [
     MatCardModule,
@@ -23,6 +26,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatListModule,
     MatProgressSpinnerModule,
     MatSelectModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
   exports: [
     MatCardModule,
@@ -36,6 +41,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatListModule,
     MatProgressSpinnerModule,
     MatSelectModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
 })
 export class MaterialModule {}

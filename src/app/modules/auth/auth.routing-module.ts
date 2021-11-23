@@ -4,6 +4,7 @@ import { AuthGaurd } from 'src/app/global-services/auth-gaurd.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 const routes: Routes = [
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   {
     path: 'login',
     component: LoginComponent,
@@ -12,8 +13,7 @@ const routes: Routes = [
     path: 'dashboard',
     canActivate: [AuthGaurd],
     component: DashboardComponent,
-  },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  }
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

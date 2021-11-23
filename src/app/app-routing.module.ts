@@ -5,11 +5,6 @@ import { AuthGaurd } from './global-services/auth-gaurd.service';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: '/auth',
-    pathMatch: 'full',
-  },
-  {
     path: 'auth',
     loadChildren: () =>
       import('./modules/auth/auth.module').then((m) => m.AuthModule),
@@ -24,6 +19,11 @@ const routes: Routes = [
     path: 'not-found',
     component: ErrorPageComponent,
     data: { message: 'Page not found' },
+  },
+  {
+    path: '',
+    redirectTo: '/auth',
+    pathMatch: 'full',
   },
   {
     path: '**',

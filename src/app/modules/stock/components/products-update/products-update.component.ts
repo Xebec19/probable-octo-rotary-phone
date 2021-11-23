@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { finalize, Observable, Subscription } from 'rxjs';
 import { ICategory } from 'src/app/global-models/category.model';
 import { IApiResponse } from 'src/app/global-models/response.model';
@@ -31,7 +32,8 @@ export class ProductsUpdateComponent implements OnInit, OnDestroy {
   constructor(
     private storage: AngularFireStorage,
     private notification: NotificationService,
-    private httpService: HttpService
+    private httpService: HttpService,
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.productForm = new FormGroup({
@@ -87,6 +89,7 @@ export class ProductsUpdateComponent implements OnInit, OnDestroy {
       .postRequest('/products/insert-product', form.value)
       .subscribe(
         (res: IApiResponse) => {
+          this.router.navigate(['/stock/product-table']);
           this.notification.notification('Uploaded product');
         },
         (error: any) => {

@@ -12,8 +12,8 @@ mat-drawer-content {
   padding: 0px;
 }
 mat-drawer-content {
-  overflow-x: hidden;
   width: 100%;
+  overflow-x: hidden;
 }
 .example-spacer {
   flex: 1 1 auto;
@@ -24,6 +24,9 @@ mat-drawer {
 @media only screen and (min-width: 600px) {
   mat-drawer {
     width: 15%;
+  }
+  mat-drawer-content{
+    width: 85%;
   }
 }
 .active {

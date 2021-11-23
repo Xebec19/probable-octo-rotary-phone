@@ -1,0 +1,30 @@
+.product-table__container {
+  padding: 5px 15px;
+  min-width: 600px;
+  overflow-x: scroll;
+}
+table {
+  margin-top: 5px;
+  width: 100%;
+}
+.mat-column-ID {
+  width: 32px;
+  border-right: 1px solid currentColor;
+  padding-right: 24px;
+  text-align: center;
+}
+.mat-column-Product-Name {
+  padding-left: 16px;
+}
+.product-table__productImage {
+  height: 4rem;
+  width: 4rem;
+  margin-top: 5px;
+  border-radius: 16px;
+}
+
+@media only screen and (min-width: 600px) {
+  .product-table__container {
+    padding: 0rem 4rem;
+  }
+}
