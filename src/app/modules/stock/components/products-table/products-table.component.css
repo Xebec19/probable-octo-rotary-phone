@@ -6,6 +6,7 @@
 table {
   margin-top: 5px;
   width: 100%;
+  overflow: scroll;
 }
 .mat-column-ID {
   width: 32px;
@@ -22,7 +23,6 @@ table {
   margin-top: 5px;
   border-radius: 16px;
 }
-
 @media only screen and (min-width: 600px) {
   .product-table__container {
     padding: 0rem 4rem;

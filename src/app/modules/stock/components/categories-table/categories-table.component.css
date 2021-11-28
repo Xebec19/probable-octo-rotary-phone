@@ -1,0 +1,17 @@
+table {
+  width: 100%;
+}
+.mat-column-categoryId {
+  width: 32px;
+  border-right: 1px solid currentColor;
+  padding-right: 24px;
+  text-align: center;
+}
+.mat-column-categoryName {
+    padding-left: 16px;
+  }
+@media only screen and (min-width: 600px) {
+  table {
+    padding: 0rem 4rem;
+  }
+}
