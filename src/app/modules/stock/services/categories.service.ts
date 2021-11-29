@@ -16,4 +16,7 @@ export class CategoriesService {
       .postRequest('/category/category-table', payload)
       .pipe(take(1));
   };
+  private fetchCategoriesDB = () => {
+    return this.http.getRequest('/products/get-categories').pipe(take(1));
+  };
 }

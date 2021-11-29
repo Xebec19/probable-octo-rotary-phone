@@ -8,10 +8,15 @@ table {
   text-align: center;
 }
 .mat-column-categoryName {
-    padding-left: 16px;
-  }
+  padding-left: 16px;
+}
+.categories-table__container {
+  padding: 5px 15px;
+  min-width: 600px;
+  overflow-x: scroll;
+}
 @media only screen and (min-width: 600px) {
-  table {
+  .categories-table__container {
     padding: 0rem 4rem;
   }
 }

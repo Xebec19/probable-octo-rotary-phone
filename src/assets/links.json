@@ -12,7 +12,7 @@
     "route": "/stock/product-table"
   },
   {
-    "label": "Categories Update",
+    "label": "Add Categories",
     "route": "/stock/category-update"
   },
   {

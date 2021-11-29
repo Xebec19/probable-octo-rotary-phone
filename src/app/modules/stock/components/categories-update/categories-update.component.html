@@ -1,5 +1,32 @@
 <section class="category-update__container">
-    <form>
-        Hello
-    </form>
+  <form [formGroup]="categoryDetail" (ngSubmit)="onSubmit(categoryDetail)">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Category Name</mat-label>
+      <input matInput placeholder="Category Name" formControlName="name" />
+      <mat-error *ngIf="this.categoryDetail.get('name')?.invalid">
+        {{ this.getErrors(this.categoryDetail.controls["name"]) }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Status</mat-label>
+      <input matInput placeholder="Status" formControlName="status" />
+      <mat-error *ngIf="this.categoryDetail.get('status')?.invalid">
+        {{ this.getErrors(this.categoryDetail.controls["status"]) }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Parent Category</mat-label>
+      <mat-select>
+        <!-- <mat-option *ngFor="let food of foods" formControlName="parent">
+          {{ food.viewValue }}
+        </mat-option> -->
+      </mat-select>
+      <mat-error *ngIf="this.categoryDetail.get('parent')?.invalid">
+        {{ this.getErrors(this.categoryDetail.controls["parent"]) }}
+      </mat-error>
+    </mat-form-field>
+    <button class="submit-button" mat-raised-button color="primary">
+      Submit
+    </button>
+  </form>
 </section>
