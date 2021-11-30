@@ -9,17 +9,27 @@
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Status</mat-label>
-      <input matInput placeholder="Status" formControlName="status" />
+      <mat-select formControlName="status">
+        <mat-option *ngFor="let status of statusOptions" [value]="status">
+          {{ status | titlecase}}
+        </mat-option>
+      </mat-select>
       <mat-error *ngIf="this.categoryDetail.get('status')?.invalid">
         {{ this.getErrors(this.categoryDetail.controls["status"]) }}
       </mat-error>
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Parent Category</mat-label>
-      <mat-select>
-        <!-- <mat-option *ngFor="let food of foods" formControlName="parent">
-          {{ food.viewValue }}
-        </mat-option> -->
+      <mat-select formControlName="parent">
+        <mat-option value="0">
+          {{ "No Parent Category" }}
+        </mat-option>
+        <mat-option
+          *ngFor="let category of categoriesOptions"
+          [value]="category.category_id"
+        >
+          {{ category.category_name }}
+        </mat-option>
       </mat-select>
       <mat-error *ngIf="this.categoryDetail.get('parent')?.invalid">
         {{ this.getErrors(this.categoryDetail.controls["parent"]) }}
