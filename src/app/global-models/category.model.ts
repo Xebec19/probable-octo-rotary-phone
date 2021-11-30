@@ -9,3 +9,10 @@ export interface ICategoriesTableEntity {
   status: string;
   parent_category_id: number;
 }
+export interface ICategoryPayload {
+  categoryId?: number;
+  categoryName: string;
+  status: string;
+  parentId: number;
+}
+

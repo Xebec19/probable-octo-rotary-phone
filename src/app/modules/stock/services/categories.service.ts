@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { resolve } from 'dns';
 import { catchError, Observable, retry, take } from 'rxjs';
-import { ICategoriesTableEntity } from 'src/app/global-models/category.model';
+import {
+  ICategoryPayload,
+} from 'src/app/global-models/category.model';
 import { IApiResponse } from 'src/app/global-models/response.model';
 import { ErrorHandlerService } from 'src/app/global-services/handle-error.service';
 import { HttpService } from 'src/app/global-services/httpRequest.service';
@@ -27,13 +28,19 @@ export class CategoriesService {
       .getRequest('/products/get-categories')
       .pipe(take(1), retry(3), catchError(this.errorHandler.handleError));
   };
-  insertCategory = (data: ICategoriesTableEntity) => {
+  insertCategory = (data: ICategoryPayload) => {
     return this.http
-      .postRequest('/categories/insert', data)
+      .postRequest('/category/insert', data)
       .pipe(take(1), retry(3), catchError(this.errorHandler.handleError));
   };
-  updateCategory = (data: ICategoriesTableEntity) => {
-    return this.http.postRequest('/categories/update',data)
-    .pipe(take(1),retry(3),catchError(this.errorHandler.handleError));
-  }
+  updateCategory = (data: ICategoryPayload) => {
+    return this.http
+      .postRequest('/category/update', data)
+      .pipe(take(1), retry(3), catchError(this.errorHandler.handleError));
+  };
+  fetchOneCategory = (categoryId: number) => {
+    return this.http
+      .postRequest('/category/readOne', {categoryId})
+      .pipe(take(1), retry(3), catchError(this.errorHandler.handleError));
+  };
 }

@@ -31,12 +31,24 @@
       </td>
     </ng-container>
 
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let element">
+        <!-- {{ element.parent_category_id }} -->
+        <mat-icon
+          [routerLink]="['/stock/category-update']"
+          [queryParams]="{ categoryId: element.category_id }"
+          >visibility</mat-icon
+        >&nbsp;<mat-icon>delete</mat-icon>
+      </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
   <mat-paginator
     [length]="this.totalCategories"
-    [pageSizeOptions]="[5,10,40]"
+    [pageSizeOptions]="[5, 10, 40]"
     (page)="onPageChange($event)"
     aria-label="Select page of categories"
   >

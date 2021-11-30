@@ -20,6 +20,7 @@ export class CategoriesTableComponent implements OnInit, AfterViewInit {
     'createdOn',
     'status',
     'parentCategoryId',
+    'action'
   ];
   categories: ICategoriesTableEntity[] = [];
   dataSource = new MatTableDataSource<ICategoriesTableEntity>(this.categories);
