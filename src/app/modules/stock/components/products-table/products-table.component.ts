@@ -28,6 +28,7 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
     'Price',
     'Delivery Price',
     'Country',
+    'Action'
   ];
   dataSource = new MatTableDataSource<IProducts>(this.products);
   @ViewChild(MatPaginator) paginator!: MatPaginator;

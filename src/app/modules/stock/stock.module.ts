@@ -8,6 +8,7 @@ import { StockRoutingModule } from './stock-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CategoriesService } from './services/categories.service';
+import { CategoryResolver } from './services/categories.resolver';
 @NgModule({
   declarations: [
     CategoriesUpdateComponent,
@@ -22,6 +23,6 @@ import { CategoriesService } from './services/categories.service';
     ReactiveFormsModule,
     MaterialModule,
   ],
-  providers: [CategoriesService],
+  providers: [CategoriesService, CategoryResolver],
 })
 export class StockModule {}

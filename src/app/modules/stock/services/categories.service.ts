@@ -23,9 +23,9 @@ export class CategoriesService {
       .postRequest('/category/category-table', payload)
       .pipe(take(1));
   };
-  fetchCategoriesOptions = (): Observable<IApiResponse> => {
+  fetchCategoriesOptions = (categoryId:number = 0): Observable<IApiResponse> => {
     return this.http
-      .getRequest('/products/get-categories')
+      .postRequest('/category/options',{categoryId})
       .pipe(take(1), retry(3), catchError(this.errorHandler.handleError));
   };
   insertCategory = (data: ICategoryPayload) => {

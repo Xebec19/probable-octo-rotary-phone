@@ -1,3 +1,4 @@
+import { LowerCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
@@ -6,7 +7,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { async } from 'rxjs';
 import {
   ICategoriesTableEntity,
   ICategory,
@@ -25,11 +25,11 @@ export class CategoriesUpdateComponent implements OnInit {
   categoryId: number = 0;
   categoryDetail = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    status: new FormControl('active'.toUpperCase(), [Validators.required]),
+    status: new FormControl('active', [Validators.required]),
     parent: new FormControl('0'),
   });
   categoriesOptions!: ICategory[];
-  readonly statusOptions = ['active'.toUpperCase(), 'inactive'.toUpperCase()];
+  readonly statusOptions = ['active', 'inactive'];
   constructor(
     private alert: NotificationService,
     private categoryService: CategoriesService,
@@ -37,7 +37,6 @@ export class CategoriesUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.fetchCategoryOptions();
     this.subscribeRoute();
   }
 
@@ -67,14 +66,19 @@ export class CategoriesUpdateComponent implements OnInit {
     }
   };
 
-  fetchCategoryOptions = async () => {
-    this.categoryService.fetchCategoriesOptions().subscribe((response) => {
-      this.categoriesOptions = response.data;
-    });
+  fetchCategoryOptions = async (categoryId: number) => {
+    this.categoryService
+      .fetchCategoriesOptions(categoryId)
+      .subscribe((response) => {
+        this.categoriesOptions = response.data;
+      });
   };
   insertCategory = async (data: ICategoryPayload) => {
     this.categoryService.insertCategory(data).subscribe((res) => {
       this.alert.notification('Successfully inserted');
+      this.categoryDetail.reset();
+      this.categoryDetail.controls['name'].markAsUntouched();
+      this.categoryDetail.controls['status'].markAsUntouched();
     });
   };
   updateCategory = async (data: ICategoryPayload) => {
@@ -88,17 +92,21 @@ export class CategoriesUpdateComponent implements OnInit {
       this.categoryId = param['categoryId'];
       if (this.categoryId) {
         this.fetchCategory(this.categoryDetail, this.categoryId);
+      } else {
+        this.categoryDetail.reset({ status: 'active', parent: 0 });
       }
+      this.fetchCategoryOptions(this.categoryId ?? 0);
     });
   };
   fetchCategory = async (form: FormGroup, categoryId: number) => {
-    this.categoryService
-      .fetchOneCategory(categoryId)
-      .subscribe((res: IApiResponse) => {
-        const { category_name, status, parent_category_id } = res.data;
-        form.controls['name'].patchValue(category_name);
-        form.controls['status'].patchValue(status);
-        form.controls['parent'].patchValue(parent_category_id);
-      });
+    this.route.data.subscribe((data) => {
+      if (!!!data['categoryDetails'].data) return;
+      const { category_name, status, parent_category_id } =
+        data['categoryDetails'].data;
+      const lowerStatus = status?.toLowerCase();
+      form.controls['name'].patchValue(category_name);
+      form.controls['status'].patchValue(lowerStatus);
+      form.controls['parent'].patchValue(+parent_category_id);
+    });
   };
 }

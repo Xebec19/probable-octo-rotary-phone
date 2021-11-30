@@ -4,6 +4,7 @@ import { CategoriesTableComponent } from './components/categories-table/categori
 import { CategoriesUpdateComponent } from './components/categories-update/categories-update.component';
 import { ProductsTableComponent } from './components/products-table/products-table.component';
 import { ProductsUpdateComponent } from './components/products-update/products-update.component';
+import { CategoryResolver } from './services/categories.resolver';
 const routes: Routes = [
   {
     path: 'product-input',
@@ -20,6 +21,7 @@ const routes: Routes = [
   {
     path: 'category-update',
     component: CategoriesUpdateComponent,
+    resolve: { categoryDetails: CategoryResolver },
   },
 ];
 @NgModule({

@@ -10,7 +10,7 @@
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Status</mat-label>
       <mat-select formControlName="status">
-        <mat-option *ngFor="let status of statusOptions" [value]="status">
+        <mat-option *ngFor="let status of statusOptions" [value]="status | lowercase">
           {{ status | titlecase}}
         </mat-option>
       </mat-select>
@@ -28,7 +28,7 @@
           *ngFor="let category of categoriesOptions"
           [value]="+category.category_id"
         >
-          {{ category.category_name }}
+          {{ category.category_name | titlecase}}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="this.categoryDetail.get('parent')?.invalid">
