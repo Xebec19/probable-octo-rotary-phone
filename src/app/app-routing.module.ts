@@ -16,6 +16,12 @@ const routes: Routes = [
       import('./modules/stock/stock.module').then((m) => m.StockModule),
   },
   {
+    path: 'orders',
+    canActivate: [AuthGaurd],
+    loadChildren: () =>
+      import('./modules/orders/orders.module').then((m) => m.OrdersModule),
+  },
+  {
     path: 'not-found',
     component: ErrorPageComponent,
     data: { message: 'Page not found' },
@@ -32,7 +38,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      initialNavigation: 'enabled',
+      enableTracing: true
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

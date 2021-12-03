@@ -18,5 +18,9 @@
   {
     "label": "Category Table",
     "route": "/stock/category-table"
+  },
+  {
+    "label": "Order Table",
+    "route": "/orders/table"
   }
 ]
