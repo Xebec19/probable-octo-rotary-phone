@@ -1,1 +1,21 @@
-<p>order-info works!</p>
+<section class="order-info__container">
+  <div class="order-info__user-details">
+    <h3 class="order-info__user-details__title">User Details</h3>
+    <ul>
+      <li *ngFor="let x of info">{{ x }}&nbsp;:&nbsp;{{ orderDetails[x] }}</li>
+    </ul>
+  </div>
+  <div class="order-info__user-card">
+    <h3 class="order-info__user-card__title">Cart Details</h3>
+    <ul>
+      <!-- <li *ngFor="let x of items">{{ x }}&nbsp;:&nbsp;{{ orderItems[x] }}</li> -->
+      <li *ngFor="let item of orderItems">
+        <ol>
+          <li *ngFor="let key of itemKeys">
+            {{ key }}&nbsp;:&nbsp;{{ item[key] }}
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </div>
+</section>
