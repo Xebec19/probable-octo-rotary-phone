@@ -4,11 +4,13 @@ import { OrdersTableComponent } from './orders-table/orders-table.component';
 import { OrdersRoutingModule } from './orders-routing.module';
 import { OrdersTableService } from './orders-table.service';
 import { MaterialModule } from '../material/material.module';
+import { OrderInfoComponent } from './order-info/order-info.component';
 
 
 @NgModule({
   declarations: [
-    OrdersTableComponent
+    OrdersTableComponent,
+    OrderInfoComponent
   ],
   imports: [
     CommonModule,

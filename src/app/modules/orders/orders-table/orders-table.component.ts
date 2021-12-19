@@ -20,7 +20,7 @@ export class OrdersTableComponent implements OnInit, OnDestroy {
     'delivery_price',
     'total',
     'created_on',
-    'email'
+    'email',
   ];
   orders!: IOrderTableEntity[];
   dataSource = new MatTableDataSource<IOrderTableEntity>(this.orders);
@@ -32,10 +32,8 @@ export class OrdersTableComponent implements OnInit, OnDestroy {
       this.service.fetchOrders().subscribe((val) => {
         this.orders = val.data;
         this.orders.forEach((order) => {
-          
           order.address = JSON.parse(JSON.stringify(order.address));
         });
-        console.log(this.orders);
         this.dataSource = new MatTableDataSource<IOrderTableEntity>(
           this.orders
         );
