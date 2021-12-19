@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { OrdersTableComponent } from './orders-table/orders-table.component';
 import { OrdersRoutingModule } from './orders-routing.module';
 import { OrdersTableService } from './orders-table.service';
-
+import { MaterialModule } from '../material/material.module';
 
 
 @NgModule({
@@ -12,7 +12,8 @@ import { OrdersTableService } from './orders-table.service';
   ],
   imports: [
     CommonModule,
-    OrdersRoutingModule
+    OrdersRoutingModule,
+    MaterialModule
   ],
   providers:[OrdersTableService]
 })
