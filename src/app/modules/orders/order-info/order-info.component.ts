@@ -13,10 +13,22 @@ export class OrderInfoComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.subs.push(this.route.queryParams.subscribe((param) => {
-      this.orderId = +param['id'];
-    }));
+    this.fetchOrderInfo();
   }
+
+  fetchOrderInfo = async () => {
+    this.subs.push(
+      this.route.queryParams.subscribe((param) => {
+        this.orderId = +param['id'];
+      })
+    );
+    this.subs.push(
+      this.route.data.subscribe((data) => {
+        if (!!!data['orderInfo'].data) return;
+        console.log(data);
+      })
+    );
+  };
 
   ngOnDestroy(): void {
     this.subs.forEach((sub) => sub.unsubscribe());

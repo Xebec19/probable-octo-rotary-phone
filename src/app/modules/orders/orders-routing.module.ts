@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { OrderInfoResolver } from "./order-info.resolver";
 import { OrderInfoComponent } from "./order-info/order-info.component";
 import { OrdersTableComponent } from "./orders-table/orders-table.component";
 
@@ -10,7 +11,8 @@ const routes:Routes = [
     },
     {
         path:"info",
-        component: OrderInfoComponent
+        component: OrderInfoComponent,
+        resolve: { orderInfo: OrderInfoResolver },
     },
     {
         path:"",

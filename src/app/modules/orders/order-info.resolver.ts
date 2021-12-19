@@ -2,18 +2,17 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { IApiResponse } from 'src/app/global-models/response.model';
-// import { CategoriesService } from './categories.service';
-import {}
+import { OrdersInfoService } from './order-info.service';
 
 @Injectable()
-export class CategoryResolver implements Resolve<IApiResponse | null> {
-  constructor(private categoryService: CategoriesService) {}
+export class OrderInfoResolver implements Resolve<IApiResponse | null> {
+  constructor(private orderInfoService: OrdersInfoService) {}
   resolve(
     route: ActivatedRouteSnapshot
   ): Observable<IApiResponse> | Promise<IApiResponse> | IApiResponse | null {
-    if (route.queryParams['categoryId'])
-      return this.categoryService.fetchOneCategory(
-        route.queryParams['categoryId']
+    if (route.queryParams['orderId'])
+      return this.orderInfoService.fetchOrderInfo(
+        route.queryParams['orderId']
       );
     else return null;
   }

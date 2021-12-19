@@ -12,7 +12,7 @@ export class OrdersInfoService {
   fetchOrderInfo = (orderId: number) => {
     const payload = { orderId };
     return this.http
-      .postRequest('/orders/table', payload)
+      .postRequest('/orders/info', payload)
       .pipe(take(1), retry(3), catchError(this.errorHandler.handleError));
   };
 }
