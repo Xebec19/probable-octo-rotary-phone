@@ -5,10 +5,12 @@ import { CategoriesUpdateComponent } from './components/categories-update/catego
 import { ProductsTableComponent } from './components/products-table/products-table.component';
 import { ProductsUpdateComponent } from './components/products-update/products-update.component';
 import { CategoryResolver } from './services/categories.resolver';
+import { ProductResolver } from './services/product.resolver';
 const routes: Routes = [
   {
     path: 'product-input',
     component: ProductsUpdateComponent,
+    resolve: {productDetails: ProductResolver}
   },
   {
     path: 'product-table',

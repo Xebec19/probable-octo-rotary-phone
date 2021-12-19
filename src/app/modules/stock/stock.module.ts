@@ -9,6 +9,8 @@ import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CategoriesService } from './services/categories.service';
 import { CategoryResolver } from './services/categories.resolver';
+import { ProductResolver } from './services/product.resolver';
+import { ProductService } from './services/product.service';
 @NgModule({
   declarations: [
     CategoriesUpdateComponent,
@@ -23,6 +25,11 @@ import { CategoryResolver } from './services/categories.resolver';
     ReactiveFormsModule,
     MaterialModule,
   ],
-  providers: [CategoriesService, CategoryResolver],
+  providers: [
+    CategoriesService,
+    CategoryResolver,
+    ProductResolver,
+    ProductService,
+  ],
 })
 export class StockModule {}

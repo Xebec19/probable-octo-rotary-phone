@@ -41,7 +41,6 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
       initialNavigation: 'enabled',
-      enableTracing: true
     }),
   ],
   exports: [RouterModule],

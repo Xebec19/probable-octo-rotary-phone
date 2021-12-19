@@ -7,8 +7,8 @@ import {
 } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { finalize, Observable, Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { finalize, Observable, Subscription, take } from 'rxjs';
 import { ICategory } from 'src/app/global-models/category.model';
 import { IApiResponse } from 'src/app/global-models/response.model';
 import { HttpService } from 'src/app/global-services/httpRequest.service';
@@ -28,14 +28,20 @@ export class ProductsUpdateComponent implements OnInit, OnDestroy {
   fileRef!: ElementRef;
   subs: Subscription[] = [];
   categories: ICategory[] = [];
+  productId!: number;
   readonly statusOptions = ['active', 'inactive'];
+
   constructor(
     private storage: AngularFireStorage,
     private notification: NotificationService,
     private httpService: HttpService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
   ngOnInit(): void {
+    this.route.params.subscribe((param) => {
+      this.productId = param['id'];
+    });
     this.productForm = new FormGroup({
       productName: new FormControl('', [Validators.required]),
       categoryId: new FormControl('', [Validators.required]),
@@ -57,6 +63,37 @@ export class ProductsUpdateComponent implements OnInit, OnDestroy {
       countryId: new FormControl(1, [Validators.required]),
     });
     this.getCategories();
+    if (this.productId > 0) {
+      this.route.data.subscribe((res) => {
+        const {
+          category_id,
+          product_name,
+          product_image,
+          quantity,
+          status,
+          price,
+          delivery_price,
+          product_desc,
+        } = res['productDetails'].data;
+        this.productForm.controls['productName'].patchValue(product_name);
+        this.productForm.controls['categoryId'].patchValue(category_id);
+        this.productForm.controls['productImage'].patchValue(product_image);
+        this.productForm.controls['quantity'].patchValue(quantity);
+        this.productForm.controls['status'].patchValue(status);
+        this.productForm.controls['price'].patchValue(price);
+        this.productForm.controls['deliveryPrice'].patchValue(delivery_price);
+        this.productForm.controls['productDesc'].patchValue(product_desc);
+        // todo add country id as well
+      });
+    } else {
+      this.productForm.reset({
+        quantity: 0,
+        status: 'active',
+        price: 0,
+        deliveryPrice: 0,
+        countryId: 1,
+      });
+    }
   }
   ngOnDestroy(): void {
     this.subs.forEach((val) => val.unsubscribe());
