@@ -9,15 +9,27 @@
   </div>
   <div class="order-info__user-card">
     <h3 class="order-info__user-card__title">Cart Details</h3>
-    <ul>
-      <!-- <li *ngFor="let x of items">{{ x }}&nbsp;:&nbsp;{{ orderItems[x] }}</li> -->
-      <li *ngFor="let item of orderItems">
-        <ol>
-          <li *ngFor="let key of itemKeys">
-            <span>{{ key }}&nbsp;:&nbsp;{{ item[key] }}</span>
-          </li>
-        </ol>
-      </li>
-    </ul>
+    <div *ngFor="let item of orderItems">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>{{item.name}}</mat-card-title>
+          <mat-card-subtitle>{{item.category}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+      
+    </div>
+    
   </div>
 </section>

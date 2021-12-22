@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { OrderItemsEntity } from 'src/app/global-models/order.model';
 
 @Component({
   selector: 'app-order-info',
@@ -13,7 +14,7 @@ export class OrderInfoComponent implements OnInit, OnDestroy {
   info: any;
   itemKeys: any;
   orderDetails: any;
-  orderItems: any;
+  orderItems!: OrderItemsEntity[];
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -32,10 +33,9 @@ export class OrderInfoComponent implements OnInit, OnDestroy {
         const { orderDetails, orderItems } = data['orderInfo'].data;
         this.orderDetails = orderDetails;
         this.orderItems = orderItems;
-        this.orderDetails = JSON.parse(JSON.parse(this.orderDetails.address));
+        this.orderDetails.address = JSON.parse(JSON.parse(this.orderDetails.address)).address; // not a good practise
         this.info = Object.keys(orderDetails);
-        this.itemKeys = Object.keys(orderItems[0]);
-        console.log(orderItems);
+        this.itemKeys = Object.keys(orderItems[0]).filter(val => val !== 'image');
       })
     );
   };
