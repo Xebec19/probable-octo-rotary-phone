@@ -2,7 +2,9 @@
   <div class="order-info__user-details">
     <h3 class="order-info__user-details__title">User Details</h3>
     <ul>
-      <li *ngFor="let x of info">{{ x }}&nbsp;:&nbsp;{{ orderDetails[x] }}</li>
+      <li *ngFor="let x of info">
+        <span>{{ x }}&nbsp;:&nbsp;{{ orderDetails[x] }}</span>
+      </li>
     </ul>
   </div>
   <div class="order-info__user-card">
@@ -12,7 +14,7 @@
       <li *ngFor="let item of orderItems">
         <ol>
           <li *ngFor="let key of itemKeys">
-            {{ key }}&nbsp;:&nbsp;{{ item[key] }}
+            <span>{{ key }}&nbsp;:&nbsp;{{ item[key] }}</span>
           </li>
         </ol>
       </li>

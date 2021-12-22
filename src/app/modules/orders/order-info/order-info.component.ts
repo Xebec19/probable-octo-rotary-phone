@@ -10,10 +10,10 @@ import { Subscription } from 'rxjs';
 export class OrderInfoComponent implements OnInit, OnDestroy {
   subs: Subscription[] = [];
   orderId!: number;
-  info:any;
-  itemKeys:any;
-  orderDetails:any;
-  orderItems:any;
+  info: any;
+  itemKeys: any;
+  orderDetails: any;
+  orderItems: any;
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -32,8 +32,10 @@ export class OrderInfoComponent implements OnInit, OnDestroy {
         const { orderDetails, orderItems } = data['orderInfo'].data;
         this.orderDetails = orderDetails;
         this.orderItems = orderItems;
+        this.orderDetails = JSON.parse(JSON.parse(this.orderDetails.address));
         this.info = Object.keys(orderDetails);
         this.itemKeys = Object.keys(orderItems[0]);
+        console.log(orderItems);
       })
     );
   };
