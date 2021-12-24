@@ -27,4 +27,5 @@ export interface OrderItemsEntity {
   quantity: number;
   delivery_price: string;
   category: string;
+  description: string;
 }
