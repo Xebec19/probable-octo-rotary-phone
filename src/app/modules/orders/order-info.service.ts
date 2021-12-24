@@ -15,4 +15,9 @@ export class OrdersInfoService {
       .postRequest('/orders/info', payload)
       .pipe(take(1), retry(3), catchError(this.errorHandler.handleError));
   };
+  updateOrderStatus = (orderId: number, status: string) => {
+    const payload = { orderId, status };
+    return this.http.postRequest('/orders/update-status',payload)
+    .pipe(take(1), retry(3),catchError(this.errorHandler.handleError));
+  };
 }

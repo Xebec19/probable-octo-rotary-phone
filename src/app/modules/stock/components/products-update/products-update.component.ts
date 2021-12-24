@@ -39,8 +39,8 @@ export class ProductsUpdateComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute
   ) {}
   ngOnInit(): void {
-    this.route.params.subscribe((param) => {
-      this.productId = param['id'];
+    this.route.queryParams.subscribe((param) => {
+      this.productId = param['productId'];
     });
     this.productForm = new FormGroup({
       productName: new FormControl('', [Validators.required]),

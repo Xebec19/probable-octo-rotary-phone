@@ -20,6 +20,7 @@ export interface OrderDetails {
 }
 export interface OrderItemsEntity {
   od_id: number;
+  product_id:number;
   order_id: string;
   name: string;
   image: string;

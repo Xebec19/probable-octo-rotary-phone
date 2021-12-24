@@ -7,14 +7,18 @@
       >
     </mat-list>
     <span class="order-info__action-button">
-    <button mat-flat-button color="primary">Confirm</button>
-    <button mat-flat-button color="warn">Cancel</button>
-  </span>
+      <button mat-flat-button color="primary" (click)="onStatusChange(orderDetails.order_id,'confirm')">Confirm</button>
+      <button mat-flat-button color="warn" (click)="onStatusChange(orderDetails.order_id,'cancel')">Cancel</button>
+    </span>
   </div>
   <div class="order-info__user-card">
     <h3 class="order-info__user-card__title">Order Details</h3>
     <div *ngFor="let item of orderItems">
-      <mat-card class="example-card">
+      <mat-card
+        class="example-card"
+        routerLink="/stock/product-input"
+        [queryParams]="{ productId: item.product_id }"
+      >
         <mat-card-header>
           <mat-card-title>{{ item.name }}</mat-card-title>
           <mat-card-subtitle>{{ item.category }}</mat-card-subtitle>

@@ -43,4 +43,9 @@ export class OrderInfoComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subs.forEach((sub) => sub.unsubscribe());
   }
+
+  onStatusChange = (orderId:number,status:string) => {
+    console.log(status);
+    console.log(orderId);
+  }
 }
