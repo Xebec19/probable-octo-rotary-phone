@@ -18,7 +18,8 @@ export class AppComponent implements OnInit {
   links = resource;
   constructor(
     private userDetails: UserDetailsService,
-    private breakpointObserver: BreakpointObserver
+    private breakpointObserver: BreakpointObserver,
+    public auth: UserDetailsService
   ) {}
   ngOnInit() {
     this.userDetails.fetchToken();
@@ -40,4 +41,7 @@ export class AppComponent implements OnInit {
       });
   };
   title = 'admin-frontend';
+  logout = (): void => {
+    this.auth.logout();
+  };
 }

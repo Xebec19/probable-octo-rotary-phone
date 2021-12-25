@@ -15,7 +15,6 @@
     </mat-nav-list>
   </mat-drawer>
   <mat-drawer-content>
-    <!-- <button mat-raised-button (click)="drawer.toggle()">Toggle drawer</button> -->
     <mat-toolbar>
       <button
         (click)="drawer.toggle()"
@@ -38,6 +37,7 @@
         mat-icon-button
         class="example-icon"
         aria-label="Example icon-button with share icon"
+        (click)="logout()"
       >
         <mat-icon>power_settings_new</mat-icon>
       </button>

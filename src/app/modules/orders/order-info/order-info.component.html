@@ -6,9 +6,24 @@
         ><span>{{ x }}&nbsp;:&nbsp;{{ orderDetails[x] }}</span></mat-list-item
       >
     </mat-list>
-    <span  *ngIf="orderDetails.status !== 'confirm'" class="order-info__action-button">
-      <button mat-flat-button color="primary" (click)="onStatusChange(orderDetails.order_id,'confirm')">Confirm</button>
-      <button mat-flat-button color="warn" (click)="onStatusChange(orderDetails.order_id,'cancel')">Cancel</button>
+    <span
+      *ngIf="orderDetails.status !== 'confirm'"
+      class="order-info__action-button"
+    >
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="onStatusChange(orderDetails.order_id, 'confirm')"
+      >
+        Confirm
+      </button>
+      <button
+        mat-flat-button
+        color="warn"
+        (click)="onStatusChange(orderDetails.order_id, 'cancel')"
+      >
+        Cancel
+      </button>
     </span>
   </div>
   <div class="order-info__user-card">
