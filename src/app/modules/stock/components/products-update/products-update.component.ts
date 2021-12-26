@@ -28,7 +28,7 @@ export class ProductsUpdateComponent implements OnInit, OnDestroy {
   fileRef!: ElementRef;
   subs: Subscription[] = [];
   categories: ICategory[] = [];
-  productId!: number;
+  productId: number = 0;
   readonly statusOptions = ['active', 'inactive'];
 
   constructor(
@@ -39,10 +39,11 @@ export class ProductsUpdateComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute
   ) {}
   ngOnInit(): void {
-    this.route.queryParams.subscribe((param) => {
+    this.subs.push(this.route.queryParams.subscribe((param) => {
       this.productId = param['productId'];
-    });
+    }));
     this.productForm = new FormGroup({
+      productId: new FormControl(this.productId ?? 0),
       productName: new FormControl('', [Validators.required]),
       categoryId: new FormControl('', [Validators.required]),
       productImage: new FormControl('', [Validators.required]),
