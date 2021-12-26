@@ -16,12 +16,6 @@ const routes: Routes = [
       import('./modules/stock/stock.module').then((m) => m.StockModule),
   },
   {
-    path: 'orders',
-    canActivate: [AuthGaurd],
-    loadChildren: () =>
-      import('./modules/orders/orders.module').then((m) => m.OrdersModule),
-  },
-  {
     path: 'not-found',
     component: ErrorPageComponent,
     data: { message: 'Page not found' },
