@@ -13,12 +13,7 @@ const routes: Routes = [
     path: 'dashboard',
     canActivate: [AuthGaurd],
     component: DashboardComponent,
-  },
-  {
-    path: '',
-    redirectTo: '/login',
-    pathMatch: 'full',
-  },
+  }
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
